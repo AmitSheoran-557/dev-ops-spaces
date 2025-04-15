@@ -12,6 +12,7 @@
   background: linear-gradient(0deg, #4F02FE, #4F02FE), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
 }
 
+
 .bg-linear-button {
   background: linear-gradient(299.31deg, #EB088D 9.21%, #A911C6 34.26%, #7717F3 66.93%, #640DF9 110.07%);
 }
@@ -23,6 +24,10 @@
 
 .bg-blue-linear {
   background: linear-gradient(90deg, rgba(79, 2, 254, 0.1) 0%, rgba(79, 2, 254, 0) 100%);
+}
+
+.bg-pink-linear {
+  background: linear-gradient(90deg, rgba(205, 12, 167, 0.1) 0%, rgba(205, 12, 167, 0) 100%);
 }
 
 .bg-fade-white {
@@ -61,6 +66,11 @@
 .border-l-blue {
   border-left: 2px solid;
   border-color: #4F02FE;
+}
+
+.border-l-pink {
+  border-left: 2px solid;
+  border-color: #CD0CA7;
 }
 
 .bg-shadow {

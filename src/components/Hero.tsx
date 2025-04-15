@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CONTACT_AND_SUPPORT_DATA_LIST, USER_GUIDE_DATA_LIST } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 import { DeleteIcon } from "@/utils/icons";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type Product = {
     web_pages: string;
@@ -18,6 +19,9 @@ type HeroProps = {
 };
 
 const Hero: React.FC<HeroProps> = ({ data }) => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
     const [search, setSearch] = useState("");
     const [apiData, setApiData] = useState<Product[]>(data);
     const [currentPage, setCurrentPage] = useState(1);
@@ -33,6 +37,32 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
         setItemsPerPage(Number(e.target.value));
         setCurrentPage(1);
     };
+    useEffect(() => {
+        const querySearch = searchParams.get('search') || '';
+        setSearch(querySearch);
+
+        const savedPage = localStorage.getItem('currentPage');
+        const savedPerPage = localStorage.getItem('itemsPerPage');
+        if (savedPage) setCurrentPage(Number(savedPage));
+        if (savedPerPage) setItemsPerPage(Number(savedPerPage));
+    }, []);
+
+    useEffect(() => {
+        const query = new URLSearchParams(Array.from(searchParams.entries()));
+        if (search) {
+            query.set('search', search);
+        } else {
+            query.delete('search');
+        }
+        query.set('page', currentPage.toString());
+        router.push(`?${query.toString()}`);
+    }, [search, currentPage]);
+
+
+    useEffect(() => {
+        localStorage.setItem('currentPage', currentPage.toString());
+        localStorage.setItem('itemsPerPage', itemsPerPage.toString());
+    }, [currentPage, itemsPerPage]);
 
     const filteredData = apiData.filter((product) =>
         product.name.toLowerCase().includes(search.toLowerCase())
@@ -69,14 +99,14 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
                                 ))}
                             </div>
                         </div>
-                        <div className="max-lg:flex flex-wrap justify-between md:max-w-[60%] max-w-[40%] w-full">
+                        <div className="max-lg:flex flex-wrap md:gap-20 md:max-w-[60%] max-w-[40%] w-full">
                             <div className="flex flex-col">
                                 <h4 className="font-medium xl:text-xl lg:text-lg sm:!leading-[100%] lg:mb-5 md:mb-4 mb-3 sm:whitespace-nowrap">Contact and Support</h4>
                                 <div className="flex flex-col gap-2 max-w-[251px] max-sm:max-w-[129px] lg:mb-5 mb-4 w-full">
                                     {CONTACT_AND_SUPPORT_DATA_LIST.map((item, index) => (
-                                        <Link href={item.link} key={index} className="flex items-center lg:gap-2.5 gap-2 border-l-blue bg-blue-linear cursor-pointer lg:py-3 py-2 lg:ps-[14px] ps-3">
+                                        <Link href={item.link} key={index} className="flex items-center lg:gap-2.5 gap-2 border-l-pink bg-pink-linear cursor-pointer lg:py-3 py-2 lg:ps-[14px] ps-3">
                                             <Image className="!w-auto !h-auto" src={item.image} alt="support-icon" width={16} height={16} />
-                                            <h6 className="font-medium md:text-sm text-xs !leading-[100%] sm:whitespace-nowrap">{item.title}</h6>
+                                            <h6 className="font-medium md:text-sm text-xs !leading-[100%] whitespace-nowrap">{item.title}</h6>
                                         </Link>
                                     ))}
                                 </div>
@@ -84,9 +114,9 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
                             <div className="flex flex-col">
                                 <h4 className="font-medium xl:text-xl lg:text-lg sm:!leading-[100%] lg:mb-5 md:mb-4 mb-3 sm:whitespace-nowrap">Others</h4>
                                 <div className="flex flex-col gap-2 max-w-[251px] max-sm:max-w-[129px] lg:mb-5 mb-4 w-full">
-                                    <Link href="#docs" className="flex items-center lg:gap-2.5 gap-2 border-l-blue bg-blue-linear cursor-pointer lg:py-3 py-2 lg:ps-[14px] ps-3">
+                                    <Link href="#docs" className="flex items-center lg:gap-2.5 gap-2 border-l-pink bg-pink-linear cursor-pointer lg:py-3 py-2 lg:ps-[14px] ps-3">
                                         <Image src="/assets/images/svg/share-icon.svg" alt="docs-icon" width={16} height={16} />
-                                        <h6 className="font-medium md:text-sm text-xs !leading-[100%] sm:whitespace-nowrap">DevSecOps Docs</h6>
+                                        <h6 className="font-medium md:text-sm text-xs !leading-[100%] whitespace-nowrap">DevSecOps Docs</h6>
                                     </Link>
                                 </div>
                             </div>
@@ -101,18 +131,23 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
                                         Show
                                         <span>
                                             <div className="relative w-12 cursor-pointer">
-                                                <div className="flex items-center bg-[#A40A86] cursor-pointer min-w-[59px] justify-center gap-1 rounded-md">
-                                                    <select value={itemsPerPage} onChange={handlePerPageChange} className="bg-[#A40A86] py-2 px-2 relative z-10 outline-none text-white rounded-sm cursor-pointer appearance-none">
+                                                <div className="relative w-fit bg-[#A40A86] rounded-md text-white">
+                                                    <select
+                                                        value={itemsPerPage}
+                                                        onChange={handlePerPageChange}
+                                                        className="appearance-none bg-[#A40A86] py-2 pl-3 pr-8 rounded-md text-white cursor-pointer outline-none">
                                                         <option value="2">2</option>
                                                         <option value="4">4</option>
                                                         <option value="6">6</option>
                                                         <option value="8">8</option>
                                                         <option value="10">10</option>
                                                     </select>
-                                                    <div className="-ml-2">
+
+                                                    <div className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2">
                                                         <Image src="/assets/images/svg/chevron-down.svg" alt="arrow-down-icon" width={16} height={16} />
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </span>
                                         <p className="ml-2.5"> Enter per page</p>

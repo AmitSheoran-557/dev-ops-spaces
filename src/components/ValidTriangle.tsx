@@ -32,8 +32,8 @@ const ValidTriangle = () => {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gray-500">
-            <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-lg">
+        <div className="flex min-h-screen items-center justify-center bg-gray-500 px-4">
+            <div className="w-full max-w-lg lg:p-6 p-4 bg-white rounded-lg shadow-lg">
                 <h1 className="text-xl font-bold text-center mb-4"> Triangle Validator</h1>
                 <div className="mb-4">
                     <label className="block text-sm font-medium mb-2">Angle 1 (°)</label>
