@@ -31,7 +31,7 @@ const ProfitLossCalculator = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center px-6">
+        <div className="min-h-screen flex flex-col bg-gray-400 items-center justify-center px-6">
             <div className="bg-white xl:p-10 lg:p-8 md:p-7 sm:p-6 p-4 rounded-xl shadow-lg w-full max-w-xl">
                 <h2 className="text-3xl font-semibold mb-8 text-center text-blue-600">Profit or Loss Calculator</h2>
 
@@ -49,7 +49,7 @@ const ProfitLossCalculator = () => {
                     <div className="text-red-600 text-lg font-semibold mb-4">{error}</div>
                 )}
 
-                <button onClick={calculateProfitLoss} className="w-full cursor-pointer bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-all duration-300">
+                <button onClick={calculateProfitLoss} className="w-full py-2 cursor-pointer bg-black border-2 border-transparent hover:border-black text-white rounded-md hover:bg-white hover:text-black transition-all ease-linear duration-300">
                     Calculate Result
                 </button>
 

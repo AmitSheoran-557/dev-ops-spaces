@@ -16,6 +16,11 @@
   background: linear-gradient(299.31deg, #EB088D 9.21%, #A911C6 34.26%, #7717F3 66.93%, #640DF9 110.07%);
 }
 
+.bg-linear-button:hover {
+  background: linear-gradient(299.31deg, #490faed6 9.21%, #c64a11d1 34.26%, #2d17f3e2 66.93%, #c3179ed1 110.07%);
+  transition: all 300ms ease-in-out;
+}
+
 .bg-blue-linear {
   background: linear-gradient(90deg, rgba(79, 2, 254, 0.1) 0%, rgba(79, 2, 254, 0) 100%);
 }
@@ -38,10 +43,15 @@
   color: #CCCCCC;
 }
 
+.text-light-gray:hover {
+  color: #333333;
+}
+
 /* ====================================== extra classes ======================================= */
 .delete-icon:hover svg path {
   fill: #4F02FE !important;
   fill-opacity: 100% !important;
+  transition: all 300ms ease-in-out;
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
@@ -51,4 +61,8 @@
 .border-l-blue {
   border-left: 2px solid;
   border-color: #4F02FE;
+}
+
+.bg-shadow {
+  box-shadow: 0px 16px 53.7px 0px #4F02FE14;
 }
