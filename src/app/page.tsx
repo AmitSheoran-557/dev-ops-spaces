@@ -1,4 +1,6 @@
+import CalculateProfitLoss from "@/components/CalculateProfitLoss";
 import Hero from "@/components/Hero";
+import ValidTriangle from "@/components/ValidTriangle";
 async function getData() {
   try {
     const response = await fetch("http://universities.hipolabs.com/search?name=middle");
@@ -18,6 +20,8 @@ export default async function Home() {
   return (
     <>
       <Hero data={products} />
+      <ValidTriangle />
+      <CalculateProfitLoss />
     </>
   );
 }

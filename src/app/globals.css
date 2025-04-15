@@ -5,6 +5,13 @@
   font-family: "Inter", sans-serif;
 }
 
+
+/* =============================== bg classes ================================== */
+
+.bg-gradient-blue {
+  background: linear-gradient(0deg, #4F02FE, #4F02FE), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+}
+
 .bg-linear-button {
   background: linear-gradient(299.31deg, #EB088D 9.21%, #A911C6 34.26%, #7717F3 66.93%, #640DF9 110.07%);
 }
@@ -13,12 +20,7 @@
   background: linear-gradient(90deg, rgba(79, 2, 254, 0.1) 0%, rgba(79, 2, 254, 0) 100%);
 }
 
-.border-l-blue {
-  border-left: 2px solid;
-  border-color: #4F02FE;
-}
-
-.fade-white {
+.bg-fade-white {
   background-color: #F5F6FA;
 }
 
@@ -26,7 +28,27 @@
   background-color: #CD0CA7;
 }
 
+/* ====================================== text color classes ======================================= */
+
+.text-fade-black {
+  color: #333333;
+}
+
+.text-light-gray {
+  color: #CCCCCC;
+}
+
+/* ====================================== extra classes ======================================= */
 .delete-icon:hover svg path {
   fill: #4F02FE !important;
   fill-opacity: 100% !important;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.border-l-blue {
+  border-left: 2px solid;
+  border-color: #4F02FE;
 }
