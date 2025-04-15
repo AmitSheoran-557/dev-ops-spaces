@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+.bg-linear-button {
+  background: linear-gradient(299.31deg, #EB088D 9.21%, #A911C6 34.26%, #7717F3 66.93%, #640DF9 110.07%);
+}
+
+.bg-blue-linear {
+  background: linear-gradient(90deg, rgba(79, 2, 254, 0.1) 0%, rgba(79, 2, 254, 0) 100%);
+}
+
+.border-l-blue {
+  border-left: 2px solid;
+  border-color: #4F02FE;
+}
+
+.fade-white {
+  background-color: #F5F6FA;
+}
+
+.bg-dark-pink {
+  background-color: #CD0CA7;
+}
+
+.delete-icon:hover svg path {
+  fill: #4F02FE !important;
+  fill-opacity: 100% !important;
+}
